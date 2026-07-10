@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Inventory</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="toasts"></div>
+
+  <div id="app">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="player-name" id="playerName">John Doe</div>
+        <div class="player-id" id="playerId">ID: 0</div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" id="helpBtn" title="Help">?</button>
+        <button class="icon-btn close-btn" id="closeBtn" title="Close">&#10005;</button>
+      </div>
+    </div>
+
+    <!-- MAIN ROW -->
+    <div class="main-row">
+
+      <!-- PLAYER INVENTORY -->
+      <div class="panel inventory-panel">
+        <div class="panel-header">
+          <span class="panel-title">Your Inventory</span>
+          <span class="panel-weight" id="playerWeightText">0.00 / 45.00 kg</span>
+        </div>
+        <div class="weight-track"><div class="weight-fill" id="playerWeightFill"></div></div>
+
+        <div class="search-row">
+          <input type="text" id="searchInput" placeholder="Search item" />
+        </div>
+
+        <div class="grid" id="playerGrid"></div>
+      </div>
+
+      <!-- SECONDARY INVENTORY (ground bag) -->
+      <div class="panel secondary-panel" id="secondaryPanel">
+        <div class="panel-header">
+          <span class="panel-title" id="secondaryTitle">Secondary Inventory</span>
+          <span class="panel-weight" id="secondaryWeightText"></span>
+        </div>
+        <div class="grid" id="secondaryGrid"></div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM HOTBAR -->
+    <div class="hotbar">
+      <div class="stat-circle" data-stat="health">
+        <svg viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle class="ring-fill health" id="ringHealth" cx="22" cy="22" r="19"></circle></svg>
+        <span class="stat-emoji">&#10084;</span>
+      </div>
+      <div class="stat-circle" data-stat="weight">
+        <svg viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle class="ring-fill weight" id="ringWeight" cx="22" cy="22" r="19"></circle></svg>
+        <span class="stat-emoji">&#127890;</span>
+      </div>
+      <div class="stat-circle" data-stat="thirst">
+        <svg viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle class="ring-fill thirst" id="ringThirst" cx="22" cy="22" r="19"></circle></svg>
+        <span class="stat-emoji">&#128167;</span>
+      </div>
+      <div class="stat-circle" data-stat="hunger">
+        <svg viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle class="ring-fill hunger" id="ringHunger" cx="22" cy="22" r="19"></circle></svg>
+        <span class="stat-emoji">&#127831;</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONTEXT MENU -->
+  <div class="context-menu" id="contextMenu">
+    <div class="context-item" data-action="drop">Drop</div>
+    <div class="context-item" data-action="split">Split</div>
+    <div class="context-item" data-action="separate">Separate</div>
+    <div class="context-item" data-action="give">Give</div>
+  </div>
+
+  <!-- QUANTITY MODAL -->
+  <div class="modal-overlay" id="qtyOverlay">
+    <div class="modal">
+      <div class="modal-title" id="qtyTitle">Enter Amount</div>
+      <div class="modal-item-label" id="qtyItemLabel"></div>
+      <input type="number" id="qtyInput" min="1" value="1" />
+      <input type="range" id="qtySlider" min="1" value="1" />
+      <div class="modal-buttons">
+        <button class="btn btn-cancel" id="qtyCancel">Cancel</button>
+        <button class="btn btn-confirm" id="qtyConfirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GIVE MODAL -->
+  <div class="modal-overlay" id="giveOverlay">
+    <div class="modal give-modal">
+      <div class="modal-title">Give Item</div>
+      <div class="modal-item-label" id="giveItemLabel"></div>
+      <div class="player-list" id="playerList"></div>
+      <div class="give-amount-row" id="giveAmountRow">
+        <label>Amount</label>
+        <input type="number" id="giveQtyInput" min="1" value="1" />
+      </div>
+      <div class="modal-buttons">
+        <button class="btn btn-cancel" id="giveCancel">Cancel</button>
+        <button class="btn btn-confirm" id="giveConfirm" disabled>Give</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
